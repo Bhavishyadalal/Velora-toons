@@ -22,3 +22,14 @@
 | Browser image won't build/run | Check supported Playwright version, container dependencies and host memory |
 
 Do not treat a 404, generic timeout, TLS problem, or network-policy denial as proof of bot detection. If a site explicitly requires verification, report that and stop automated attempts; do not add evasion loops.
+
+## Status labels after the source-error update
+
+`SOURCE UNAVAILABLE` means Velora received a source error from its reachable API;
+it does not mean the Render service is offline. `OFFLINE` is reserved for request
+connection failures or timeouts. `API ERROR` indicates an unexpected HTTP/API
+response. The error screen offers the original source website and shows the
+upstream HTTP status/reference when the backend supplies them.
+
+A healthy backend cannot force a third-party website to accept its requests.
+These diagnostics must not be described as a fix for source access restrictions.

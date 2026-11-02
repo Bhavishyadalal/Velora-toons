@@ -12,3 +12,8 @@ test('unconfigured API gives setup error',async()=>{await assert.rejects(request
 test('source errors remain explicit',async()=>{globalThis.fetch=async()=>({ok:false,json:async()=>({error:{code:'removed',message:'Removed by source'}})});await assert.rejects(request('https://api.example','/x'),e=>e.code==='removed'&&e.message==='Removed by source');});
 test('invalid JSON is not treated as catalogue data',async()=>{globalThis.fetch=async()=>({ok:true,json:async()=>{throw new Error('invalid');}});await assert.rejects(request('https://api.example','/x'),e=>e.message.includes('unexpected response'));});
 test('slow requests receive recoverable timeout',async()=>{globalThis.fetch=async(url,{signal})=>new Promise((resolve,reject)=>signal.addEventListener('abort',()=>reject(new DOMException('Aborted','AbortError'))));await assert.rejects(request('https://api.example','/x'),e=>e.code==='timeout');});
+
+test('HTTP source failure carries safe diagnostics and API reachability',async()=>{
+  globalThis.fetch=async()=>({ok:false,status:502,json:async()=>({error:{code:'source_access_denied',message:'Access denied',upstream_status:403,request_id:'abc123'}})});
+  await assert.rejects(request('https://api.example','/x'),e=>e.apiReachable&&e.upstreamStatus===403&&e.requestId==='abc123');
+});
