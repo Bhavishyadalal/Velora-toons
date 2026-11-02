@@ -1,0 +1,54 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#101014"><meta name="description" content="Your little universe of animation. Browse cartoons and anime with Velora Toons.">
+<title>Velora Toons · Find your next adventure</title>
+<link rel="icon" href="assets/icon.svg" type="image/svg+xml"><link rel="stylesheet" href="assets/styles.css">
+<script src="config.js"></script><script type="module" src="assets/app.js"></script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="ambient" aria-hidden="true"></div>
+<aside class="sidebar">
+<a href="#home" class="brand" aria-label="Velora Toons home"><img src="assets/icon.svg" width="42" height="42" alt=""><span>velora<span class="brand-sub">TOONS UNIVERSE</span></span></a>
+<div class="nav-label">YOUR UNIVERSE</div>
+<nav aria-label="Main navigation">
+<button class="nav-item active" data-view="home"><span data-icon="compass"></span><span>Discover</span><span class="nav-dot"></span></button>
+<button class="nav-item" data-view="cartoon"><span data-icon="sparkles"></span><span>Cartoons</span></button>
+<button class="nav-item" data-view="anime"><span data-icon="planet"></span><span>Anime</span></button>
+<button class="nav-item" data-view="movies"><span data-icon="film"></span><span>Movies</span></button>
+<div class="nav-label">MADE FOR YOU</div>
+<button class="nav-item" data-view="favorites"><span data-icon="heart"></span><span>My favourites</span><span id="favorite-count" class="count">0</span></button>
+<button class="nav-item" data-view="history"><span data-icon="clock"></span><span>Recently opened</span></button>
+</nav>
+<div class="sidebar-bottom"><div class="mini-orbit" aria-hidden="true">✦</div><strong>One more adventure?</strong><p>Big stories. A little escape.</p><button class="text-button" id="settings-open"><span data-icon="settings"></span> Your space</button></div>
+</aside>
+<div class="shell">
+<header class="topbar">
+<a href="#home" class="mobile-brand"><img src="assets/icon.svg" width="32" height="32" alt="">velora</a>
+<form id="search-form" class="search" role="search"><span data-icon="search"></span><input id="search" type="search" placeholder="Find your next adventure…" maxlength="100" aria-label="Search cartoons and anime"><kbd>/</kbd><button type="submit" class="sr-only">Search</button></form>
+<div class="top-actions"><span class="connection" id="connection"><i></i> CONNECTING</span><button class="icon-button" id="settings-top" title="Settings" aria-label="Open settings"><span data-icon="settings"></span></button><div class="avatar" aria-label="Your local profile">V<span></span></div></div>
+</header>
+<main id="main" tabindex="-1">
+<section class="hero" id="hero">
+<div class="hero-art" aria-hidden="true"><div class="orbit orbit-one"></div><div class="orbit orbit-two"></div><div class="planet"><div class="planet-face"><i></i><i></i><span></span></div></div><span class="star s1">✦</span><span class="star s2">✧</span><span class="star s3">✦</span><span class="star s4">+</span><div class="floating-pill"><span class="tiny-dot"></span>A whole world of stories</div><span class="art-caption">PRESS PLAY ON POSSIBILITY.</span></div>
+<div class="hero-content"><div class="eyebrow"><span class="tiny-star">✦</span> WELCOME TO YOUR HAPPY PLACE</div><h1>Little escape.<br><span>Big adventures.</span></h1><p>Old favourites, new obsessions, and worlds worth getting lost in. Find a story that feels like you.</p><div class="hero-actions"><button class="button primary" id="explore"><span data-icon="play"></span> Find my adventure</button><button class="button ghost" id="hero-library"><span data-icon="heart"></span> My favourites</button></div><div class="hero-foot"><span class="stacked-stars">✦ ✧ ✦</span><span>For the endlessly curious.</span></div></div>
+</section>
+<section class="watch-section hidden" id="watch-section" aria-labelledby="watch-title"><div class="section-heading"><div><span class="eyebrow">NOW IN YOUR ORBIT</span><h2 id="watch-title">Your next episode</h2></div><button class="icon-button" id="close-player" aria-label="Close player"><span data-icon="close"></span></button></div>
+<div class="watch-layout"><div class="watch-main"><div class="player-frame" id="player-frame"><div class="player-placeholder"><span data-icon="play"></span><strong>Getting your player ready</strong><p>Finding available sources…</p></div></div><div class="playback-bar"><div><span class="live-dot"></span><span id="playback-status" role="status">Finding available players</span></div><button id="theater" class="text-button"><span data-icon="expand"></span> Theatre</button></div></div><aside class="source-panel"><span class="eyebrow">MAKE IT YOURS</span><h3>Audio & player</h3><p class="muted">Choose an available language or try another server.</p><div id="source-list" class="source-list"></div><div class="player-actions"><a id="provider-link" class="button secondary hidden" target="_blank" rel="noopener noreferrer">Open player <span data-icon="external"></span></a><a id="download-link" class="button secondary hidden" target="_blank" rel="noopener noreferrer" download>Download <span data-icon="download"></span></a><button class="text-button" id="resolve-retry"><span data-icon="refresh"></span> Refresh players</button></div><p id="download-note" class="fine-print"></p></aside></div><p class="player-hint">Provider players have their own controls and may show ads. Velora cannot control their playback, subtitles, or tracking. Open the provider if embedding is blocked.</p></section>
+<section id="browse-section" aria-labelledby="section-title"><div class="section-heading"><div><div class="eyebrow" id="section-kicker">YOUR NEXT CHAPTER</div><h2 id="section-title">Discover something <em>good.</em></h2></div><button id="refresh" class="round-button" aria-label="Refresh catalogue"><span data-icon="refresh"></span></button></div>
+<div class="filter-row"><div class="chips" role="group" aria-label="Browse category"><button class="chip selected" data-category="cartoon">✦ Cartoons</button><button class="chip" data-category="anime">Anime</button><button class="chip" data-category="movies">Movies</button></div><span id="result-count" class="muted small">From the live catalogue</span></div>
+<div class="notice hidden" id="notice" role="status"></div><div id="catalogue" class="catalogue" aria-live="polite" aria-busy="true"></div>
+<div id="empty" class="empty hidden"><div class="empty-symbol">✧</div><h3 id="empty-title">Nothing here yet</h3><p id="empty-message">Your next adventure is just a search away.</p><button id="empty-action" class="button primary">Try again</button></div>
+<div class="load-row"><button id="load-more" class="button secondary hidden">A little more to explore <span data-icon="arrow"></span></button></div>
+</section>
+<section class="bottom-banner"><span class="banner-star" aria-hidden="true">✦</span><div><h3>A universe that feels like yours.</h3><p>Keep your favourites close. Your collection stays on this device.</p></div><button class="button ghost" id="banner-favorites">My collection <span data-icon="arrow"></span></button></section>
+<footer><a href="#home" class="footer-brand">velora<span>✦</span></a><p>Made for little escapes & big imaginations.</p><button class="text-button" id="about-open">How it works</button></footer>
+</main></div>
+<dialog id="detail-dialog" class="detail-dialog"><button class="dialog-close icon-button" aria-label="Close details" data-close="detail-dialog"><span data-icon="close"></span></button><div id="detail-content"></div></dialog>
+<dialog id="settings-dialog"><div class="dialog-heading"><div><span class="eyebrow">YOUR LITTLE CORNER</span><h2>Your space</h2></div><button class="icon-button" aria-label="Close settings" data-close="settings-dialog"><span data-icon="close"></span></button></div><form id="settings-form"><label for="api-url">Render backend URL</label><input id="api-url" type="url" placeholder="https://your-service.onrender.com" autocomplete="url"><p class="fine-print">Only the API address belongs here. Never paste passwords, tokens, or signed media URLs. This address is saved on your device.</p><label for="theme">Colour mood</label><select id="theme"><option value="violet">Cosmic violet</option><option value="mint">Moonlit mint</option><option value="rose">Rose after dark</option></select><label class="check-label"><input id="save-history" type="checkbox"> Save recently opened titles on this device</label><div class="settings-actions"><button class="button primary" type="submit">Save my space <span data-icon="check"></span></button><button class="button ghost" type="button" id="clear-local">Clear my collection</button></div></form><p class="fine-print">Keyboard: / search · Esc close dialogs · built-in video only: Space play/pause, ←/→ seek, M mute, F fullscreen. Provider players use their own shortcuts.</p></dialog>
+<dialog id="about-dialog"><div class="dialog-heading"><h2>A little behind the magic.</h2><button class="icon-button" data-close="about-dialog" aria-label="Close information"><span data-icon="close"></span></button></div><p>Velora Toons reads public catalogue and player metadata through your backend. Video streams from its original provider to your browser; Render does not download or relay the video.</p><p>Availability, language options, ads, and embedding permissions belong to the source. Removed videos cannot be restored here. Downloads appear only when an adapter provides a verified media file URL.</p><p>Your favourites, settings, and optional recent history stay in this browser. No Velora account is required.</p><a class="button secondary" href="https://watchanimeworld.one/" target="_blank" rel="noopener noreferrer">Visit the source <span data-icon="external"></span></a></dialog>
+<nav class="mobile-nav" aria-label="Mobile navigation"><button data-view="home" class="active"><span data-icon="compass"></span>Discover</button><button data-view="anime"><span data-icon="planet"></span>Anime</button><button data-view="favorites"><span data-icon="heart"></span>Saved</button><button data-view="history"><span data-icon="clock"></span>Recent</button></nav>
+<div id="toast" role="status" class="toast"></div>
+</body></html>

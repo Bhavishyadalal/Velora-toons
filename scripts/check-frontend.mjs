@@ -1,0 +1,11 @@
+import {readFile,readdir} from 'node:fs/promises';
+import {execFileSync} from 'node:child_process';
+const root=new URL('../frontend/',import.meta.url);
+for(const file of (await readdir(new URL('assets/',root))).filter(f=>f.endsWith('.js')))execFileSync(process.execPath,['--check',new URL('assets/'+file,root).pathname],{stdio:'inherit'});
+const html=await readFile(new URL('index.html',root),'utf8');
+const ids=[...html.matchAll(/\bid="([^"]+)"/g)].map(m=>m[1]);
+if(new Set(ids).size!==ids.length)throw new Error('Duplicate HTML IDs');
+for(const m of html.matchAll(/(?:src|href)="((?:assets\/|config\.js)[^"]*)"/g))await readFile(new URL(m[1],root));
+const app=await readFile(new URL('assets/app.js',root),'utf8');
+for(const m of app.matchAll(/\$\('#([\w-]+)'\)/g))if(!ids.includes(m[1])&&!['episode-list','season-note'].includes(m[1]))throw new Error('Missing element '+m[1]);
+console.log('Frontend syntax, linked assets, IDs and JS element references passed.');
