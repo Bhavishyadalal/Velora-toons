@@ -1,3 +1,6 @@
 // Public deployment configuration. No secrets belong in this file.
-// Enter the deployed Render API origin, or configure it in Your space.
-window.VELORA_CONFIG = Object.freeze({ apiBase: '', timeoutMs: 45000 });
+// Device settings in Your space override this default.
+window.VELORA_CONFIG = Object.freeze({
+  apiBase: 'https://velora-toons-api.onrender.com',
+  timeoutMs: 45000
+});
